@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-generator
+  namespace: stress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-generator
+  template:
+    metadata:
+      labels:
+        app: log-generator
+    spec:
+      containers:
+      - name: logger
+        image: busybox
+        args: [/bin/sh, -c, 'while true; do echo "LOKI_TEST_LOG: $(date) - Hello from EKS log generator"; sleep 5; done']

@@ -1,0 +1,23 @@
+# prometheus-values.yaml
+
+server:
+  enabled: false
+  persistentVolume:
+    enabled: false
+  remoteWrite:
+    - url: "http://<central_server_ip>:9090/api/v1/write"
+
+agent:
+  enabled: true
+  remoteWrite:
+    - url: "http://<central_server_ip>:9090/api/v1/write"
+
+prometheus-node-exporter:
+  enabled: true
+kube-state-metrics:
+  enabled: true
+
+alertmanager:
+  enabled: false
+prometheus-pushgateway:
+  enabled: false
