@@ -4,9 +4,9 @@ resource "aws_security_group" "bastion_sg" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port   = 0
+    to_port     = 00
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"] 
   }
 
@@ -97,8 +97,8 @@ resource "aws_instance" "bastion" {
     set -e
 
     # Install dependencies
-    yum update -y
-    yum install -y unzip curl
+    apt update -y
+    apt install -y unzip curl
 
     # Install AWS CLI v2
     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
